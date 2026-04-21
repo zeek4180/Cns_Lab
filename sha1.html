@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>SHA1</title></head>
+<body>
+<h1>SHA-1</h1>
+<input type="text" id="text">
+<button onclick="run()">Hash</button>
+<p id="out"></p>
+<script>
+async function run(){
+    let text = document.getElementById("text").value;
+    let buf = new TextEncoder().encode(text);
+    let hash = await crypto.subtle.digest("SHA-1", buf);
+    let hex = [...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,'0')).join('');
+    document.getElementById("out").innerText = hex;
+}
+</script>
+</body>
+</html>

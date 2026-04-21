@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><title>Caesar Cipher</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<h1>Caesar Cipher</h1>
+<input type="text" id="text" placeholder="Enter text">
+<input type="number" id="shift" placeholder="Shift"><br>
+<button onclick="encode()">Encode</button>
+<button onclick="decode()">Decode</button>
+<p id="result"></p>
+<script>
+function c(t, s) {
+    return t.split('').map(x => {
+        if (x >= 'A' && x <= 'Z')
+            return String.fromCharCode((x.charCodeAt(0)-65+s+26)%26+65);
+        if (x >= 'a' && x <= 'z')
+            return String.fromCharCode((x.charCodeAt(0)-97+s+26)%26+97);
+        return x;
+    }).join('');
+}
+function encode() {
+    let t = document.getElementById("text").value;
+    let s = parseInt(document.getElementById("shift").value);
+    document.getElementById("result").innerText = "Encoded: " + c(t, s);
+}
+function decode() {
+    let t = document.getElementById("text").value;
+    let s = parseInt(document.getElementById("shift").value);
+    document.getElementById("result").innerText = "Decoded: " + c(t, -s);
+}
+</script>
+</body>
+</html>

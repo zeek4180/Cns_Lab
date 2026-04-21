@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><title>Hill Cipher</title></head>
+<body>
+<h1>Hill Cipher (2x2)</h1>
+<input type="text" id="text" placeholder="Text"><br>
+<button onclick="run()">Encrypt</button>
+<p id="out"></p>
+<script>
+function run(){
+    let key = [[5,8],[17,3]];
+    let text = document.getElementById("text").value.toUpperCase().replace(/ /g,'');
+    while(text.length % 2) text += 'X';
+    let result = "";
+    for(let i=0;i<text.length;i+=2){
+        let a = text.charCodeAt(i)-65;
+        let b = text.charCodeAt(i+1)-65;
+        let x = (key[0][0]*a + key[0][1]*b)%26;
+        let y = (key[1][0]*a + key[1][1]*b)%26;
+        result += String.fromCharCode(x+65) + String.fromCharCode(y+65);
+    }
+    document.getElementById("out").innerText = result;
+}
+</script>
+</body>
+</html>

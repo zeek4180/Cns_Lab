@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><title>RSA</title></head>
+<body>
+<h1>RSA Encryption</h1>
+<input type="number" id="p" placeholder="p">
+<input type="number" id="q" placeholder="q"><br>
+<input type="text" id="text" placeholder="Text">
+<button onclick="run()">Encrypt</button>
+<p id="out"></p>
+<script>
+function gcd(a,b){ return b==0?a:gcd(b,a%b); }
+function run(){
+    let p = +document.getElementById("p").value;
+    let q = +document.getElementById("q").value;
+    let text = document.getElementById("text").value;
+    let n = p*q;
+    let phi = (p-1)*(q-1);
+    let e=2;
+    while(gcd(e,phi)!=1) e++;
+    let result = text.split('').map(c => Math.pow(c.charCodeAt(0), e) % n);
+    document.getElementById("out").innerText = result.join(", ");
+}
+</script>
+</body>
+</html>

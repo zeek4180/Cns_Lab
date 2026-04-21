@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><title>Diffie-Hellman</title></head>
+<body>
+<h1>Diffie-Hellman</h1>
+<input type="number" id="p" placeholder="P">
+<input type="number" id="g" placeholder="G">
+<input type="number" id="a" placeholder="Alice key">
+<input type="number" id="b" placeholder="Bob key">
+<button onclick="run()">Generate</button>
+<p id="out"></p>
+<script>
+function run(){
+    let p=+document.getElementById("p").value;
+    let g=+document.getElementById("g").value;
+    let a=+document.getElementById("a").value;
+    let b=+document.getElementById("b").value;
+    let A = Math.pow(g,a)%p;
+    let B = Math.pow(g,b)%p;
+    let s1 = Math.pow(B,a)%p;
+    let s2 = Math.pow(A,b)%p;
+    document.getElementById("out").innerText = "Secret: "+s1+" , "+s2;
+}
+</script>
+</body>
+</html>
